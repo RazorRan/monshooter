@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Shoot</title>
+  </head>
+  <style>
+    body {
+      width: 100%;
+      overflow: hidden;
+      background: url("monbg3.webp");
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    #board {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 40px auto;
+      /* border: 2px solid white; */
+      background: url("monspace.webp");
+      box-shadow: black 10 10 20;
+      background-size: cover;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    #jet {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: url("mike.gif");
+      background-size: contain;
+      background-repeat: no-repeat;
+      left: 50%;
+      bottom: 0px;
+    }
+
+    .bullets {
+      position: absolute;
+      bottom: 40px;
+      left: 51%;
+      width: 20px;
+      height: 20px;
+      background: url("bullet.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .rocks {
+      position: absolute;
+      top: 0px;
+      width: 50px;
+      height: 50px;
+      background: url("unah.gif");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    #points {
+      position: fixed;
+      top: 105px;
+      left:300px;
+      margin: 40px;
+      
+      font-size: 3em;
+      color: rgb(246, 232, 247);
+      
+    }
+    #score {
+      position: fixed;
+      top:100px;
+      left: 30px;     
+      margin: 40px;
+      
+      font-size: 3em;
+      color: rgb(246, 232, 247);
+      
+    }
+
+
+
+
+  </style>
+  <script src="app.js" defer></script>
+  <body>
+    
+    <div id="board">
+      <div class="rocks"></div>
+      <div id="jet"></div>
+    </div>
+    <p id="score">  <img src="note.webp" alt="Small Image" style="float: left; width: 40px; height: 40px; margin-right: 8px;">
+      mon-score</p> <div id="points">0</div>
+
+     
+  </body>
+</html>
+
+
+<!--  1318701626097401866 
+       -->
