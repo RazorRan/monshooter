@@ -163,7 +163,7 @@ const board = document.getElementById("board");
   r.style.width = rw + "px";
   r.style.height = rw + "px";
 
-  const rockImages = ["bill.gif","chog.gif","tease.gif", "chogd.gif","partychog.gif"];
+  const rockImages = ["bill.gif","chog.gif","tease.gif","chogdance.gif","partychog.gif"];
   const randomImg = rockImages[Math.floor(Math.random() * rockImages.length)];
   r.style.background = `url("${randomImg}") center/contain no-repeat`;
 
@@ -278,3 +278,4 @@ const board = document.getElementById("board");
       }
 
     });
+
