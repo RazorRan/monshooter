@@ -522,22 +522,6 @@
     let rockInterval = baseinterval;
     const intervalincrement = 100;
 
-    /* Shoot sound */
-    const shootSound = new Audio("sounds/shoot.wav");
-    shootSound.preload = "auto";
-    let audioUnlocked = false;
-
-    function unlockAudio() {
-      if (audioUnlocked) return;
-      shootSound.volume = 0.09;
-      shootSound.currentTime = 0;
-      shootSound.play().then(() => {
-        shootSound.pause();
-        shootSound.currentTime = 0;
-        audioUnlocked = true;
-      }).catch(() => { });
-    }
-
     function updateHealthBar() {
       healthFill.style.width = `${(health / maxHealth) * 100}%`;
       healthFill.style.background = health > 2
@@ -584,7 +568,6 @@
         localStorage.setItem("monshoot_name", playerName);
       } catch { }
 
-      unlockAudio();
       running = true;
       gameOver = false;
       overlay.style.display = "none";
@@ -665,8 +648,6 @@
       });
 
       spawnMuzzleFlash();
-      shootSound.currentTime = 0;
-      shootSound.play().catch(() => { });
     }
 
     function spawnRock() {
