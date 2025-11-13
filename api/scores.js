@@ -3,7 +3,7 @@
 let scores = []; // in-memory global leaderboard: [{name, score, ts}]
 
 export default async function handler(req, res) {
-  // Allow simple CORS if you ever host frontend elsewhere, harmless if same origin
+  // Simple CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -29,7 +29,19 @@ export default async function handler(req, res) {
       const name = String(data.name || "Anonymous").slice(0, 24);
       const score = Number(data.score) || 0;
 
-      scores.push({ name, score, ts: Date.now() });
+      // 🔥 NEW LOGIC: one entry per exact name (case-sensitive)
+      const now = Date.now();
+      const existing = scores.find((s) => s.name === name); // case-sensitive
+
+      if (existing) {
+        // keep the BEST score; only update if new is higher
+        if (score > existing.score) {
+          existing.score = score;
+          existing.ts = now; // update timestamp so newer high score wins ties
+        }
+      } else {
+        scores.push({ name, score, ts: now });
+      }
 
       res.status(201).json({ ok: true });
     } catch (err) {
@@ -46,7 +58,7 @@ export default async function handler(req, res) {
 function getRawBody(req) {
   return new Promise((resolve, reject) => {
     let data = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       data += chunk;
     });
     req.on("end", () => resolve(data));
